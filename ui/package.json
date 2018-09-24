@@ -1,0 +1,34 @@
+{
+    "name": "shittykarake",
+    "license": "GPL-3",
+    "version": "0.2.0",
+    "typings": "lib/main.d.ts",
+    "description": "a search engine for karafun",
+    "homepage": "https://hellyeah.cool",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gatlin/shittykaraoke"
+    },
+    "author": "Gatlin Johnson",
+    "scripts": {
+        "clean": "rm -rf ./js",
+        "watch": "webpack --watch",
+        "build": "NODE_ENV=production webpack"
+    },
+    "devDependencies": {
+        "@types/node": "^8.0.50",
+        "file-loader": "^2.0.0",
+        "image-webpack-loader": "^4.3.1",
+        "tap": "^12.0.1",
+        "typescript": "^3.0.1",
+        "uglifyjs-webpack-plugin": "^2.0.1",
+        "webpack": "^4.16.5",
+        "webpack-cli": "^3.1.1"
+    },
+    "dependencies": {
+        "alm": "gatlin/Alm",
+        "awesome-typescript-loader": "^5.2.0",
+        "css-loader": "^1.0.0",
+        "style-loader": "^0.22.1"
+    }
+}

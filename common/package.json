@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@types/node": "^6.0.92",
+    "alm": "https://github.com/gatlin/Alm.git"
+  }
+}
