@@ -69,7 +69,6 @@ export const reducer = (state = initialState, action) => {
         }
 
         case Actions.SetServerMessage: {
-            console.log('wut', action.data);
             return {
                 ...state,
                 serverMessage: action.data
