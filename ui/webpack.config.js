@@ -2,7 +2,7 @@ var path = require('path');
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-var mode = 'development';
+var mode = 'production';
 
 var config = {
     mode: mode,
@@ -26,7 +26,7 @@ var config = {
                 cache: false,
                 parallel: true,
                 uglifyOptions: {
-                    compress: false,
+                    compress: true,
                     ecma: 5,
                     mangle: true
                 }

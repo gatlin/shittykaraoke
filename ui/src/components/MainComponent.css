@@ -41,6 +41,10 @@ div#mode-selection {
         line-height: 2rem;
         width: 100%;
     }
+
+    input#song-search-input {
+        padding: 5px 5px 5px 5px;
+    }
 }
 
 @media screen and (min-width: 600px) {

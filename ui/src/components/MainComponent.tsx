@@ -58,6 +58,7 @@ const MainComponent = Alm.connect(
               },
               keydown: evt => {
                   if (evt.getRaw().keyCode === 13) {
+                      document.getElementById('song-search-input').blur();
                       props.search();
                   }
               }

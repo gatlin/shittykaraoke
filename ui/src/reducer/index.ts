@@ -61,7 +61,6 @@ export const reducer = (state = initialState, action) => {
             if (typeof action === 'undefined') {
                 return state;
             }
-            console.log('action', action);
             return {
                 ...state,
                 listed_tracks: action.data.map(

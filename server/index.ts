@@ -42,7 +42,6 @@ server.listen(config.http_port, () => {
 /*** websocket server setup */
 const wss = new WSServer(server)
     .route('title', request => {
-        console.log('got a request');
         let results;
         if (request.msg.data === '') {
             results = [];
@@ -56,7 +55,6 @@ const wss = new WSServer(server)
         });
     })
     .route('artist', request => {
-        console.log('got a request');
         let results;
         if (request.msg.data === '') {
             results = [];

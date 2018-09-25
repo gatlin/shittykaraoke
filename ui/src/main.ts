@@ -16,7 +16,6 @@ const app = new Alm({
 });
 
 initialState.ws.subscribe(msg => {
-    console.log('response', msg);
     app.store.dispatch(searchResults(msg.data));
 });
 
