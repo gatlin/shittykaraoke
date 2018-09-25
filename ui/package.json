@@ -14,7 +14,7 @@
     "scripts": {
         "clean": "rm -rf ./js",
         "watch": "webpack --mode=development --watch",
-        "build": "NODE_ENV=production webpack"
+        "build": "webpack --mode=production"
     },
     "devDependencies": {
         "@types/node": "^8.0.50",
