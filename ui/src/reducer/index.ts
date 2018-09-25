@@ -4,7 +4,7 @@
  * state, and reducer function. This is the place to combine them all into one.
  */
 
-import { makeReducer } from 'alm';
+import { makeReducer } from '../../../alm';
 import { Actions } from '../actions';
 import { WS } from '../ws';
 import { Track } from '../../../common/track';
@@ -58,9 +58,6 @@ export const reducer = (state = initialState, action) => {
             };
 
         case Actions.SearchResults: {
-            if (typeof action === 'undefined') {
-                return state;
-            }
             return {
                 ...state,
                 listed_tracks: action.data.map(

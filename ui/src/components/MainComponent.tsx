@@ -1,4 +1,4 @@
-import * as Alm from 'alm';
+import * as Alm from '../../../alm';
 
 import './MainComponent.css';
 import * as hellyeaPng from './hellyea.png';
@@ -24,7 +24,7 @@ const CoolRadio = props => (
         checked={props.checked ? 'checked' : null}
         on={{ change: () => props.action() }}
         />
-        <label for={props.id}>{ props.label }</label>
+        <label forId={props.id}>{ props.children }</label>
     </div>
 );
 
@@ -68,16 +68,18 @@ const MainComponent = Alm.connect(
         <div id='mode-selection'>
           <CoolRadio
             id='search-by-title'
-            label='Search by Title'
             checked={props.searchBy === 'title'}
             action={ () => props.setSearchBy('title') }
-            ></CoolRadio>
+            >
+            Search by title
+          </CoolRadio>
           <CoolRadio
             id='search-by-artist'
-            label='Search By Artist'
             checked={props.searchBy === 'artist'}
             action={ () => props.setSearchBy('artist') }
-            ></CoolRadio>
+            >
+            Search by artist
+          </CoolRadio>
         </div>
         <div id='track-listings-wrapper'>
           <ul id='track-listings'>

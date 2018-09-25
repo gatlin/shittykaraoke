@@ -1,0 +1,14 @@
+{
+    "http_port": 8080,
+    "debug": true,
+    "songfiles": {
+        "karafun": {
+            "source": "local",
+            "uri": "/home/gcj/Projects/shittykaraoke/server/karafuncatalog.csv"
+        },
+        "community": {
+            "source": "google-drive",
+            "uri": "1EUF2mhLixzr084aD3qIx7uglWhBZ2zFL9YYJ0PqLbLs"
+        }
+    }
+}

@@ -1,5 +1,6 @@
 {
     "name": "shittykarake",
+    "private": true,
     "license": "GPL-3",
     "version": "0.2.0",
     "typings": "lib/main.d.ts",
@@ -12,7 +13,7 @@
     "author": "Gatlin Johnson",
     "scripts": {
         "clean": "rm -rf ./js",
-        "watch": "webpack --watch",
+        "watch": "webpack --mode=development --watch",
         "build": "NODE_ENV=production webpack"
     },
     "devDependencies": {
@@ -29,6 +30,7 @@
         "alm": "gatlin/Alm",
         "awesome-typescript-loader": "^5.2.0",
         "css-loader": "^1.0.0",
-        "style-loader": "^0.22.1"
+        "style-loader": "^0.22.1",
+        "ts-loader": "^5.2.0"
     }
 }

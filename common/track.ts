@@ -1,4 +1,4 @@
-import { el } from 'alm';
+import { el } from '../alm';
 
 function remove_quotes(str: string): string {
     return str

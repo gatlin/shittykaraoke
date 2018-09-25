@@ -2,15 +2,14 @@
     "compilerOptions": {
         "noImplicitAny": false,
         "removeComments": true,
+        "module": "es6",
         "target": "es5",
         "types": [
             "node"
         ],
         "jsx": "react",
-        "jsxFactory": "Alm.el"
-    },
-    "awesomeTypescriptLoaderOptions": {
-        "useCache": true
+        "jsxFactory": "Alm.el",
+        "sourceMap": true
     },
     "files": [ "./src/main.ts", "./src/index.d.ts" ]
 }

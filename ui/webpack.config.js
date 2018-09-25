@@ -2,17 +2,15 @@ var path = require('path');
 var webpack = require('webpack');
 var UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-var mode = 'production';
-
-var config = {
-    mode: mode,
+var config = (env, argv) => ({
+    devtool: 'inline-source-map',
     entry: {
         'main': './src/main.ts',
         'main.min': './src/main.ts'
     },
 
     output: {
-        path: path.resolve(__dirname, 'js'),
+        path: path.resolve(__dirname, 'build'),
         filename: '[name].js'
     },
 
@@ -37,7 +35,7 @@ var config = {
     module: {
         rules: [{
             test: /\.tsx?$/,
-            loader: 'awesome-typescript-loader',
+            use: 'ts-loader',
             exclude: /node_modules/
         },{
             test: /\.css$/,
@@ -52,7 +50,7 @@ var config = {
                     loader: 'file-loader',
                     options: {
                         name (file) {
-                            if (mode === 'development') {
+                            if (argv.mode === 'development') {
                                 return '[path][name].[ext]';
                             }
 
@@ -79,6 +77,6 @@ var config = {
             }]
         }]
     }
-};
+});
 
 module.exports = config;
