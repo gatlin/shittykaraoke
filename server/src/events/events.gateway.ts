@@ -21,7 +21,6 @@ export class EventsGateway {
 
     @SubscribeMessage('msg')
     findAll(client, data): WsResponse<any> {
-        console.log('data', data);
         let results = [];
         switch (data['type']) {
             case 'title':
@@ -35,12 +34,17 @@ export class EventsGateway {
             default:
                 results = [];
         }
-        console.log('results', results);
+        results = results.slice(0, 100);
         return {
             event: 'msg',
             data: {
                 type: 'results',
-                data: results
+                data: {
+                    results,
+                    message: results.length
+                        ? `Found ${results.length} result${results.length > 1 ? 's' : ''}.`
+                        : 'Sorry, we couldn\'t find anything.'
+                }
             }
         };
     }

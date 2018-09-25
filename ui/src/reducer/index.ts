@@ -20,6 +20,7 @@ export type State = {
     songQuery: string;
     ws: WS;
     listed_tracks: Array<Track>;
+    serverMessage: string;
 };
 
 export const initialState: State = {
@@ -27,7 +28,8 @@ export const initialState: State = {
     searchBy: 'title',
     songQuery: '',
     ws: new WS(),
-    listed_tracks: []
+    listed_tracks: [],
+    serverMessage: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -60,8 +62,9 @@ export const reducer = (state = initialState, action) => {
         case Actions.SearchResults: {
             return {
                 ...state,
-                listed_tracks: action.data.map(
-                    str => Track.deserialize(str))
+                listed_tracks: action.data.results.map(
+                    str => Track.deserialize(str)),
+                serverMessage: action.data.message
             };
         }
 

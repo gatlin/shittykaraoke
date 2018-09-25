@@ -28,7 +28,6 @@
     },
     "dependencies": {
         "alm": "gatlin/Alm",
-        "awesome-typescript-loader": "^5.2.0",
         "css-loader": "^1.0.0",
         "style-loader": "^0.22.1",
         "ts-loader": "^5.2.0"

@@ -81,6 +81,8 @@ const MainComponent = Alm.connect(
             Search by artist
           </CoolRadio>
         </div>
+
+        <h2 id='server-message'>{props.serverMessage}</h2>
         <div id='track-listings-wrapper'>
           <ul id='track-listings'>
             {trackListings(props.listed_tracks)}

@@ -69,7 +69,6 @@ export class SongDBService {
                         source
                     ));
                 });
-                console.log('rows', rows);
             })
             .catch(err => {
                 console.error(err);
@@ -77,8 +76,11 @@ export class SongDBService {
     }
 
     private search(needle, options) {
-        let results = fuzzy.filter(needle, this.songs, options);
-        return results.map(result => result.original);
+        if (needle !== '') {
+            let results = fuzzy.filter(needle, this.songs, options);
+            return results.map(result => result.original);
+        }
+        return [];
     }
 
     public searchTitle(needle) {
@@ -86,7 +88,6 @@ export class SongDBService {
     }
 
     public searchArtist(needle) {
-        console.log('come on', needle);
         return this.search(needle, fuzzy_options_artists);
     }
 }

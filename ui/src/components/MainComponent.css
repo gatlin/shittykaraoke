@@ -1,3 +1,8 @@
+h2#server-message {
+    color: #FFFFFF;
+    margin-top: 20px;
+}
+
 div#the_app {
     display: flex;
     flex-direction: column;
@@ -167,13 +172,12 @@ div.track {
 li.track-listing {
     margin: 5px 6px 6px 5px;
     font-size: 2rem;
+    padding-bottom: 5px;
 }
 
 li.track-listing:hover {
-    border-radius: 3px;
-    border-bottom: 1px solid #b9b9b9;
-    border-right: 1px solid #b9b9b9;
-    margin: 5px;
+    padding-bottom: 0;
+    border-bottom: 5px solid red;
 }
 
 span.track-title {
