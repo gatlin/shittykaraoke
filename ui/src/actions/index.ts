@@ -10,6 +10,7 @@ export enum Actions {
     SetModeSearch,
     SetModeBrowse,
     UpdateSongQuery,
+    SetServerMessage,
     SearchBy,
     SearchResults,
     Search
@@ -40,8 +41,16 @@ export const searchResults = data => ({
 
 export const search = () => (dispatch, getState) => {
     const { ws, searchBy, songQuery } = getState();
-    ws.send({
-        type: searchBy,
-        data: songQuery
-    });
+    if (songQuery.trim() === '') {
+        dispatch({
+            type: Actions.SetServerMessage,
+            data: 'aoeuaoeu'
+        });
+    }
+    else {
+        ws.send({
+            type: searchBy,
+            data: songQuery
+        });
+    }
 };

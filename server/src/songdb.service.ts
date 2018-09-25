@@ -2,11 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { Track, TrackSource } from '../../common/track';
 import * as byline from 'byline';
 import * as fuzzy from 'fuzzy';
-import * as util from 'util';
 import * as fs from 'fs';
-import * as jsonfile from 'jsonfile';
 import * as Promise from 'bluebird';
 import * as Spreadsheet from 'google-spreadsheet';
+import { ConfigService } from './config.service';
 
 const fuzzy_options_titles = {
     extract: item => item.title
@@ -16,15 +15,13 @@ const fuzzy_options_artists = {
     extract: item => item.artist
 };
 
-const config = jsonfile.readFileSync('./config.json');
-
 @Injectable()
 export class SongDBService {
     public songs: Array<Track> = [];
 
-    constructor() {
-        this.importSongs(config.songfiles.karafun, TrackSource.Karafun);
-        this.importSongs(config.songfiles.community, TrackSource.Community);
+    constructor(private readonly cfg: ConfigService) {
+        this.importSongs(cfg.songfiles.karafun, TrackSource.Karafun);
+        this.importSongs(cfg.songfiles.community, TrackSource.Community);
     }
 
     public importSongs(songs, source) {
