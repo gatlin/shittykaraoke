@@ -9,27 +9,28 @@ import { Actions } from '../actions';
 import { WS } from '../ws';
 import { Track } from '../../../common/track';
 
-export enum Mode {
-    Search,
-    Browse
-};
-
 export type State = {
-    mode: Mode;
+    mode: 'search' | 'browse';
     searchBy: 'title' | 'artist';
     songQuery: string;
     ws: WS;
     listed_tracks: Array<Track>;
     serverMessage: string;
+    styles: Array<String>;
+    songsForStyle: { [key: string]: Array<Track> };
+    currentStyle: string;
 };
 
 export const initialState: State = {
-    mode: Mode.Search,
+    mode: 'browse',
     searchBy: 'title',
     songQuery: '',
     ws: new WS(),
     listed_tracks: [],
-    serverMessage: ''
+    serverMessage: '',
+    styles: [],
+    songsForStyle: {},
+    currentStyle: ''
 };
 
 export const reducer = (state = initialState, action) => {
@@ -44,13 +45,13 @@ export const reducer = (state = initialState, action) => {
         case Actions.SetModeBrowse:
             return {
                 ...state,
-                mode: Mode.Browse
+                mode: 'browse'
             };
 
         case Actions.SetModeSearch:
             return {
                 ...state,
-                mode: Mode.Search
+                mode: 'search'
             };
 
         case Actions.SearchBy:
@@ -74,6 +75,33 @@ export const reducer = (state = initialState, action) => {
                 serverMessage: action.data
             };
         }
+
+        case Actions.UpdateStyles:
+            return {
+                ...state,
+                styles: action.data
+            };
+
+        case Actions.UpdateSongsForStyle: {
+            const { songs, style } = action.data;
+
+            const tracks = songs.map(song => Track.deserialize(song));
+            let sfs = { ...state.songsForStyle };
+            if (!(style in state.songsForStyle)) {
+                sfs[style] = tracks;
+            }
+            else {
+                sfs[style] = [...sfs[style], ...tracks];
+            }
+
+            return {
+                ...state,
+                songsForStyle: { ...sfs }
+            };
+        }
+
+        case Actions.SetCurrentStyle:
+            return { ...state, currentStyle: action.data };
 
         default:
             return state;

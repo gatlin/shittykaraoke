@@ -20,6 +20,7 @@ export class Track {
         public readonly year: string,
         public readonly duo: boolean,
         public readonly explicit: boolean,
+        public readonly styles: Array<string>,
         public readonly source: TrackSource
     ) { }
 
@@ -59,6 +60,9 @@ export class Track {
             matches[3],
             matches[4] === "1",
             matches[5] === "1",
+            matches[7].split(',').map(
+                style => style.trim().replace(/^"/, '').replace(/"$/, '')
+            ),
             TrackSource.Karafun
         );
     }
@@ -77,6 +81,7 @@ export class Track {
             'N/A',
             false,
             false,
+            [],
             TrackSource.Community
         );
     }
@@ -89,6 +94,7 @@ export class Track {
             year: this.year,
             duo: this.duo,
             explicit: this.explicit,
+            styles: this.styles,
             source: this.source === TrackSource.Karafun
                 ? 'karafun'
                 : 'community'
@@ -104,6 +110,7 @@ export class Track {
             obj.year,
             obj.duo,
             obj.explicit,
+            obj.styles || [],
             obj.source === 'karafun'
                 ? TrackSource.Karafun
                 : TrackSource.Community

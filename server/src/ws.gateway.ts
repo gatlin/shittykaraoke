@@ -35,6 +35,7 @@ export class WsGateway {
                 results = [];
         }
         results = results.slice(0, 100);
+        console.log('results', results);
         return {
             event: 'msg',
             data: {
@@ -47,6 +48,40 @@ export class WsGateway {
                 }
             }
         };
+    }
+
+    @SubscribeMessage('browse')
+    browse(client, data): WsResponse<any> {
+        switch (data['type']) {
+            case 'browse-styles':
+                return {
+                    event: 'browse',
+                    data: {
+                        type: 'styles',
+                        data: this.sdb.allStyles()
+                    }
+                }
+
+            case 'songs-for-style': {
+                const { style, resume } = data.data;
+                console.log('client id', client.id);
+                return {
+                    event: 'browse',
+                    data: {
+                        type: 'songs-for-style',
+                        data: {
+                            songs: this.sdb.songsForStyle(
+                                style,
+                                client.id,
+                                resume),
+                            style
+                        }
+                    }
+                };
+            }
+
+            default: return;
+        }
     }
 
     @SubscribeMessage('identity')

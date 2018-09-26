@@ -13,7 +13,11 @@ export enum Actions {
     SetServerMessage,
     SearchBy,
     SearchResults,
-    Search
+    Search,
+    UpdateStyles,
+    UpdateSongsForStyle,
+    SetCurrentStyle,
+    Nop
 };
 
 export const setModeSearch = ({
@@ -39,6 +43,48 @@ export const searchResults = data => ({
     data
 });
 
+export const browseStyles = () => (dispatch, getState) => {
+    const { ws } = getState();
+    ws.send('browse', {
+        type: 'browse-styles'
+    });
+};
+
+export const browseSongsForStyle = style => (dispatch, getState) => {
+    const { ws, songsForStyle } = getState();
+    ws.send('browse', {
+        type: 'songs-for-style',
+        data: {
+            style,
+            resume: (songsForStyle[style] || []).length
+        }
+    });
+    return {
+        type: Actions.SetCurrentStyle,
+        data: style
+    };
+};
+
+export const browseResults = data => (dispatch, getState) => {
+    if (data.type === 'styles') {
+        return {
+            type: Actions.UpdateStyles,
+            data: data.data
+        };
+    }
+
+    if (data.type === 'songs-for-style') {
+        const { currentStyle } = getState();
+        listenForScroll(() => {
+            dispatch(browseSongsForStyle(currentStyle));
+        });
+        return {
+            type: Actions.UpdateSongsForStyle,
+            data: data.data
+        };
+    }
+};
+
 export const search = () => (dispatch, getState) => {
     const { ws, searchBy, songQuery } = getState();
     if (songQuery.trim() === '') {
@@ -48,9 +94,21 @@ export const search = () => (dispatch, getState) => {
         });
     }
     else {
-        ws.send({
+        ws.send('msg', {
             type: searchBy,
             data: songQuery
         });
     }
+};
+
+export const listenForScroll = (cb) => {
+    const scrollListener = function (e) {
+        if ((window.innerHeight + Math.ceil(window.pageYOffset)) >=
+            document.body.offsetHeight) {
+            console.log('At the bottom!');
+            window.removeEventListener('scroll', scrollListener);
+        }
+    };
+    window.addEventListener('scroll', scrollListener);
+    cb();
 };

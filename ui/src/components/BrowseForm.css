@@ -1,0 +1,46 @@
+div#browse-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+div#styles-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    padding: 0;
+    width: 62%;
+}
+div.style-listing {
+    color: #FFFFFF;
+    box-sizing: border-box;
+
+    padding: 10px 10px 10px 10px;
+    overflow: hidden;
+}
+
+div.style-listing:hover, div.current-style {
+    padding: 10px 10px 5px 10px;
+    border-bottom: 5px solid red;
+    cursor: pointer;
+}
+
+div#songs-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+div.song-listing {
+    color: #FFFFFF;
+    padding: 10px 10px 10px 10px;
+    font-size: 2rem;
+}
+
+div.song-listing:hover {
+    padding: 10px 10px 5px 10px;
+    border-bottom: 5px solid red;
+}
