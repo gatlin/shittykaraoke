@@ -1,20 +1,7 @@
 import * as Alm from '../../../alm';
 import './SearchForm.css';
 import * as actions from '../actions';
-
-const CoolRadio = props => (
-    <div className='cool-radio'>
-      <input
-        type='radio'
-        name='search-by-radio'
-        id={props.id}
-        className={props.checked ? 'yay' : 'nay'}
-        checked={props.checked ? 'checked' : null}
-        on={{ change: () => props.action() }}
-        />
-        <label forId={props.id}>{ props.children }</label>
-    </div>
-);
+import { CoolRadio } from './CoolRadio';
 
 const trackListings = tracks => tracks.map(
     (track, idx) => (

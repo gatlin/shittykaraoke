@@ -20,11 +20,11 @@ export enum Actions {
     Nop
 };
 
-export const setModeSearch = ({
+export const setModeSearch = () => ({
     'type': Actions.SetModeSearch
 });
 
-export const setModeBrowse = ({
+export const setModeBrowse = () => ({
     'type': Actions.SetModeBrowse
 });
 

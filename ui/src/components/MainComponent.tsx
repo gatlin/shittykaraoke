@@ -5,6 +5,8 @@ import * as hellyeaPng from './hellyea.png';
 
 import { SearchForm } from './SearchForm';
 import { BrowseForm } from './BrowseForm';
+import { CoolRadio } from './CoolRadio';
+import * as actions from '../actions';
 // build out the track listings from search results
 
 /**
@@ -23,7 +25,10 @@ const whichForm = mode => {
 
 const MainComponent = Alm.connect(
     state => state,
-    dispatch => ({})
+    dispatch => ({
+        setModeSearch: () => dispatch(actions.setModeSearch()),
+        setModeBrowse: () => dispatch(actions.setModeBrowse())
+    })
 )(props => (
     <div
       id="the_app"
@@ -32,6 +37,22 @@ const MainComponent = Alm.connect(
         id="header"
         className="header">
         <img id='hellyea' src={hellyeaPng}/>
+        <div id='search-browse-control'>
+          <CoolRadio
+            id='do-search-ui'
+            checked={props.mode === 'search'}
+            action={() => props.setModeSearch()}
+            >
+            Search
+          </CoolRadio>
+          <CoolRadio
+            id='do-browse-ui'
+            checked={props.mode === 'browse'}
+            action={() => props.setModeBrowse()}
+            >
+            Browse
+          </CoolRadio>
+        </div>
       </header>
       { whichForm(props.mode) }
     </div>

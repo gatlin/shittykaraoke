@@ -17,6 +17,10 @@ const app = new Alm({
 
 document.title = "he'll yea1";
 
+app.store.subscribe(() => {
+    console.log(app.store.getState());
+});
+
 initialState.ws.subscribe('msg', msg => {
     app.store.dispatch(searchResults(msg.data));
 });

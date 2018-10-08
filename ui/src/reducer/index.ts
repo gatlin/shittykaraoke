@@ -22,7 +22,7 @@ export type State = {
 };
 
 export const initialState: State = {
-    mode: 'browse',
+    mode: 'search',
     searchBy: 'title',
     songQuery: '',
     ws: new WS(),
