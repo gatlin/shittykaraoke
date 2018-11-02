@@ -2,6 +2,7 @@ import * as Alm from '../../../alm';
 
 import './MainComponent.css';
 import * as hellyeaPng from './hellyea.png';
+import * as lisaBanner from '../images/lisa_banner.jpg';
 
 import { SearchForm } from './SearchForm';
 import { BrowseForm } from './BrowseForm';
@@ -36,7 +37,7 @@ const MainComponent = Alm.connect(
       <header
         id="header"
         className="header">
-        <img id='hellyea' src={hellyeaPng}/>
+        <img id='hellyea' src={lisaBanner}/>
         <div id='search-browse-control'>
           <CoolRadio
             id='do-search-ui'

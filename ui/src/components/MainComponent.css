@@ -28,7 +28,7 @@ input#song-search-input {
     line-height: 3rem;
     padding: 5px 5px 5px 15px;
     font-size: 2rem;
-    font-family: 'Comic Neue', sans-serif;
+    font-family: 'Rambla', sans-serif;
     margin: 0;
 }
 
@@ -72,7 +72,7 @@ div.track {
     font-family: 'Comic Neue',sans-serif;
     text-align: left;
     display: inline-block;
-    color: #ddd;
+    color: #fff;
 }
 
 #track-listings {
@@ -98,7 +98,7 @@ span.track-title {
 
 span.track-artist {
     //    font-size: 28pt;
-    color: gray;
+    color: #FFEB00;
     margin-left: 10px;
     font-style: italic;
 }

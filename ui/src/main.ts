@@ -15,7 +15,7 @@ const app = new Alm({
     eventRoot: 'main'
 });
 
-document.title = "he'll yea1";
+document.title = "Lisa Batsinger's Holistic Karaoke Search Engine";
 
 app.store.subscribe(() => {
     console.log(app.store.getState());
